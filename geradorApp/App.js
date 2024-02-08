@@ -1,10 +1,12 @@
 import {useState} from 'react'
-import {View,Text, StyleSheet, Image, TouchableOpacity} from 'react-native'
+import {View,Text, StyleSheet, Image, TouchableOpacity,Modal} from 'react-native'
 import Slider from '@react-native-community/slider'
+import ModalPassResultValue from './src/components/index.js'
 
 export default function App(){
   const [size, setSize] = useState(10) 
   const [passValue, setPassValue] = useState('')
+  const [modalVisible,setModalVisible] = useState(false)
 
   let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
@@ -14,6 +16,7 @@ export default function App(){
      pass += charset.charAt(Math.floor(Math.random() * n ))
     }
     setPassValue(pass)
+    setModalVisible(true)
  }  
   return(
     <View style={styles.container}> 
@@ -39,6 +42,14 @@ export default function App(){
     <TouchableOpacity style={styles.button} onPress={handlegeneratePass}>
       <Text style={styles.buttonText}>Gerar senha</Text>
     </TouchableOpacity>
+
+
+    <Modal visible={modalVisible} animationType='fade' transparent={true}>
+        <ModalPassResultValue/>
+    </Modal>
+
+    
+  
 
     </View>
   )
@@ -133,3 +144,19 @@ title:{
 // a função Math.floor(), serve para gerar um número inteiro.
 
 // a função Math.random(), serve para gerar números aleatorios entre 0 e 1 
+
+
+// Modal sever para colocarmos alguma coisa em cima de outra, no caso desse projeto, quando clicamos em gerar senha, um Modal vai aparecer na tela, sobrepondo os outros elementos.
+
+// Modal tem algumas propriedades, como: 
+
+// visible: que é para saber quando ele vai ser exibido ou não.
+
+// animationType: para saber qual que é a animação de abertura.
+
+// transparent:  para ser transparente ou não, aceita booleano.
+
+
+// Pressable é um botão clicavel, mas, sem estilização nenhuma.
+
+// podemos passar propriedades para os nossos componentes, a gente cria essas propriedades, e passa algum valor para elas.
