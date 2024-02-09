@@ -1,16 +1,25 @@
 import {View,Text,StyleSheet,TouchableOpacity, Pressable} from 'react-native'
-export default function ModalPassResultValue(){
+import * as Clipboard from 'expo-clipboard' 
+export default function ModalPassResultValue({pass, buttonClick}){
+
+const handlePass = async ()=>{
+ await Clipboard.setStringAsync(pass)
+ alert('Senha salva com sucesso!!')
+
+ buttonClick()
+}
+
 return (
     <View style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Senha gerada</Text>
 
-        <Pressable style={styles.handlePass}>
-            <Text style={styles.text}>aevnafjevn</Text>
+        <Pressable style={styles.handlePass} onLongPress={handlePass}>
+            <Text style={styles.text}>{pass}</Text>
         </Pressable>
 
         <View style={styles.buttonArea}>
-        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Voltar</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={buttonClick}><Text style={styles.buttonText} >Voltar</Text></TouchableOpacity>
 
         <TouchableOpacity style={[styles.button, styles.buttonSave]}><Text style={styles.buttonSaveText}>Salvar senha</Text></TouchableOpacity>
 
@@ -79,3 +88,30 @@ const styles = StyleSheet.create({
     }
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// a propreidade onLongPress, é para quando cliclamos e seguramos em algo, nesse projeto, vamos clicar e segurar na senha exibida quando gerada, para cópiar ela.
+
+// criamos uma função lá em cima, chamada handlePass, ela é a função que vamos passar para a propriedade onLongPress.
+
+// importamos a biblioteca Clipboard, uitilzamos ela na função handlePass, usando: Clipboard.setStringAsync(pass), para cópiar uma string. Dentro do (), vamos passar oque queremos cópiar.
+
+// colocamos um alert(), para avisar que a senha foi salva.
