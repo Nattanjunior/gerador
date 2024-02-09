@@ -1,5 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native'
 import{ Routes} from './src/routes'
+
 export default function App(){
   return(
     <NavigationContainer > 
@@ -8,3 +9,10 @@ export default function App(){
   )
 }
 
+
+
+
+
+
+
+// para podemos exibir o TabBar, precisamos importar o arquivo das rotas, e envolve-lá no componente: NavigationContainer

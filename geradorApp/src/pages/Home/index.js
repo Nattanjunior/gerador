@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {View,Text, StyleSheet, Image, TouchableOpacity,Modal} from 'react-native'
 import Slider from '@react-native-community/slider'
-import {ModalPassResultValue} from '../../components/index'
+import ModalPassResultValue from '../../components/index'
 
 export function Home(){
   const [size, setSize] = useState(10) 

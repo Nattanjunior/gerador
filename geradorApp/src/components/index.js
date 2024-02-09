@@ -1,11 +1,15 @@
 import {View,Text,StyleSheet,TouchableOpacity, Pressable} from 'react-native'
 import * as Clipboard from 'expo-clipboard' 
+import useStorage from '../hooks/useStorage'
 export default function ModalPassResultValue({pass, buttonClick}){
+const {saveItem} = useStorage()
+
 
 const handlePass = async ()=>{
  await Clipboard.setStringAsync(pass)
+ await saveItem('@pass', pass)
  alert('Senha salva com sucesso!!')
-
+ 
  buttonClick()
 }
 
@@ -21,7 +25,7 @@ return (
         <View style={styles.buttonArea}>
         <TouchableOpacity style={styles.button} onPress={buttonClick}><Text style={styles.buttonText} >Voltar</Text></TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, styles.buttonSave]}><Text style={styles.buttonSaveText}>Salvar senha</Text></TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={handlePass}><Text style={styles.buttonSaveText}>Salvar senha</Text></TouchableOpacity>
 
         </View>
 
