@@ -12,24 +12,18 @@ const useStorage = ()=>{
         }
     }
 
-
-
     // Salvar um item no storage
     const saveItem = async (key,value) =>{
         try {
             let passSave = await getItem(key)
             passSave.push(value)
 
-            await AsyncStorage.setItem(key, JSON.stringify(passSave)) // salvando o array com: senhas que já estão salvas e adicionando novas senhas.
+            await AsyncStorage.setItem(key, JSON.stringify(passSave)) // salvando o array com: senhas que já estão salvas e adicionando novas senhas em forma de string.
             
         } catch (error) {
             console.log("ERRO AO SALVAR!!!",error)
         }
     }
-
-
-
-
 
     // Remover algo do storage
     const removeItem = async (key, item) =>{
